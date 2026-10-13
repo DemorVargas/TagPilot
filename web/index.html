@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treblo Tag Explorer</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="dot" id="statusDot" title="checking..."></span>
+    <h1>Treblo Tag Explorer</h1>
+    <span class="count" id="tagCount">&mdash;</span>
+    <span class="pill" id="modePill" title="runtime mode">&mdash;</span>
+  </div>
+  <div class="sub">
+    Describe what you want to hear. The offline engine does the real work;
+    AI is an optional assist you can switch off entirely.
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <label class="lbl" for="q">What do you want to hear?</label>
+    <textarea id="q" rows="3" placeholder="e.g. sad slow piano for a rainy night&#10;e.g. late night city drive, moody synths but not too heavy&#10;e.g. music for the gym heavy and fast&#10;e.g. party music no drums"></textarea>
+    <div class="examples">
+      <button class="ex" data-q="sad slow piano for a rainy night">sad piano</button>
+      <button class="ex" data-q="late night city drive moody synths">night drive</button>
+      <button class="ex" data-q="chill lofi for studying">study lofi</button>
+      <button class="ex" data-q="music for the gym heavy and fast">gym</button>
+      <button class="ex" data-q="party music no drums">party, no drums</button>
+      <button class="ex" data-q="chill dinner jazz with no vocals">dinner jazz</button>
+      <button class="ex" data-q="something psychedelia flavoured">psychedelia</button>
+      <button class="ex" data-q="epic cinematic orchestral">epic score</button>
+    </div>
+
+    <div class="controls">
+      <div class="ctl">
+        <label class="lbl sm" for="include">Must include</label>
+        <input id="include" placeholder="piano, female vocalist">
+      </div>
+      <div class="ctl">
+        <label class="lbl sm" for="exclude">Never show</label>
+        <input id="exclude" placeholder="rap, drums">
+      </div>
+      <div class="ctl">
+        <label class="lbl sm" for="category">Category</label>
+        <select id="category">
+          <option value="">any</option>
+          <option value="mood">mood</option>
+          <option value="genre">genre</option>
+          <option value="instrument">instrument</option>
+          <option value="vocal">vocal</option>
+          <option value="era">era</option>
+        </select>
+      </div>
+      <div class="ctl">
+        <label class="lbl sm" for="limit">Max tags</label>
+        <input id="limit" type="number" value="40" min="5" max="200" step="5">
+      </div>
+    </div>
+
+    <div class="airow">
+      <label class="switch" id="aiSwitch">
+        <input type="checkbox" id="useAI" checked>
+        <span class="slider"></span>
+        <span class="switchlbl">AI assist</span>
+      </label>
+      <select id="provider" title="Which AI to use">
+        <option value="keyless">keyless (no API key, no signup)</option>
+        <option value="compat">own key / local (Ollama, OpenAI...)</option>
+      </select>
+      <input id="model" placeholder="model (blank = default)">
+      <button id="go" class="primary">Find tags</button>
+    </div>
+    <div class="hint" id="aiHint"></div>
+  </section>
+
+  <section class="results" id="results">
+    <div class="empty">
+      Nothing yet. Describe a sound above and hit <b>Find tags</b>.<br><br>
+      <span class="dimtext">Works with no internet at all. AI assist only adds a
+      re-rank on top of the offline engine.</span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p class="quote">This tool is mad with love and brought to you by Demor</p>
+  <span id="foot">loading...</span>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
